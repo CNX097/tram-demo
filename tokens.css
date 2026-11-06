@@ -1,0 +1,86 @@
+/* ============================================================================
+   Trạm · token thiết kế (đề xuất cho mục 6.1 của spec UI)
+   Ngôn ngữ: sa hình + biển báo giao thông. Sáng mặc định, tối = "ca đêm".
+   Vàng vạch kẻ CHỈ dùng làm nền dưới chữ tối (accent-fg), không làm màu chữ.
+   ========================================================================== */
+:root {
+  color-scheme: light;
+  /* Nền & chữ */
+  --bg:      #F6F5F1;  /* trắng sứ */
+  --panel:   #FFFFFF;
+  --sunk:    #ECEAE3;
+  --line:    #D6D3C9;
+  --line-strong: #B9B5A8;
+  --fg:      #1F2328;  /* nhựa đường */
+  --muted:   #565B62;
+
+  /* Nhấn: vàng vạch kẻ */
+  --accent:      #F2B705;
+  --accent-soft: #FCEFC0;
+  --accent-fg:   #1F2328;
+
+  /* Ngữ nghĩa */
+  --ok:   #1A7347;  --ok-soft:   #E1F1E8;
+  --warn: #A34A00;  --warn-soft: #FDEBDA;
+  --bad:  #C8102E;  --bad-soft:  #FBE2E6;
+  --info: #0B5FA5;  --info-soft: #E1EDF8;
+
+  /* Trạng thái luồng (luôn đi kèm chữ/biểu tượng) */
+  --st-live:     var(--ok);
+  --st-shadow:   var(--info);
+  --st-draft:    #6A6F76;
+  --st-off:      #767B82;
+  --st-error:    var(--bad);
+  --st-fallback: var(--warn);
+
+  /* Rủi ro */
+  --risk-low:  var(--ok);
+  --risk-mid:  var(--warn);
+  --risk-high: var(--bad);
+
+  /* Chữ */
+  --font-ui:      "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Barlow Semi Condensed", "Be Vietnam Pro", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* Bán kính · khoảng cách (thang 4px) · độ cao */
+  --r-sm: 4px; --r-md: 6px; --r-pill: 999px;
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px;
+  --e-1: 0 1px 2px rgb(31 35 40 / .08), 0 1px 1px rgb(31 35 40 / .04);
+  --e-2: 0 2px 4px rgb(31 35 40 / .08), 0 8px 20px -6px rgb(31 35 40 / .16);
+  --e-3: 0 6px 12px rgb(31 35 40 / .10), 0 24px 48px -12px rgb(31 35 40 / .26);
+
+  --field: var(--st-off); /* viền ô nhập, ≥ 3:1 */
+  --tap: 44px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Ca đêm: theo hệ thống, trừ khi người dùng ép sáng */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #14171B; --panel: #1D2126; --sunk: #101215; --line: #2F343B; --line-strong: #454B53;
+    --fg: #ECEAE4; --muted: #A7ABB1;
+    --accent: #F2B705; --accent-soft: #3A3010; --accent-fg: #14171B;
+    --ok: #4CC38A;   --ok-soft: #12301F;
+    --warn: #F59A4B; --warn-soft: #3A2412;
+    --bad: #FF6B7D;  --bad-soft: #3D161C;
+    --info: #6AB0F3; --info-soft: #12283E;
+    --st-draft: #9DA2A9; --st-off: #7D828A;
+    --e-1: 0 1px 2px rgb(0 0 0 / .4); --e-2: 0 2px 4px rgb(0 0 0 / .35), 0 8px 20px -6px rgb(0 0 0 / .5);
+    --e-3: 0 6px 12px rgb(0 0 0 / .35), 0 24px 48px -12px rgb(0 0 0 / .6);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171B; --panel: #1D2126; --sunk: #101215; --line: #2F343B; --line-strong: #454B53;
+  --fg: #ECEAE4; --muted: #A7ABB1;
+  --accent: #F2B705; --accent-soft: #3A3010; --accent-fg: #14171B;
+  --ok: #4CC38A;   --ok-soft: #12301F;
+  --warn: #F59A4B; --warn-soft: #3A2412;
+  --bad: #FF6B7D;  --bad-soft: #3D161C;
+  --info: #6AB0F3; --info-soft: #12283E;
+  --st-draft: #9DA2A9; --st-off: #7D828A;
+  --e-1: 0 1px 2px rgb(0 0 0 / .4); --e-2: 0 2px 4px rgb(0 0 0 / .35), 0 8px 20px -6px rgb(0 0 0 / .5);
+  --e-3: 0 6px 12px rgb(0 0 0 / .35), 0 24px 48px -12px rgb(0 0 0 / .6);
+}
